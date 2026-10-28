@@ -1,0 +1,1057 @@
+/* =====================================================================
+   My-Giro — лендинг по макету
+   1. Переменные и базовые стили
+   2. Утилиты
+   3. Верхняя полоса
+   4. Шапка
+   5. Главный экран
+   6. Преимущества (слайдер)
+   7. О нас
+   8. Подписка
+   9. Особенности гироскутеров
+   10. Каталог (фильтр)
+   11. Консультанты
+   12. Бренды
+   13. Полезная информация
+   14. Подвал
+   15. Кнопка «наверх»
+   16. Модальное окно
+   17. Анимации
+   18. Адаптивность
+   ===================================================================== */
+
+/* ---------- 1. Переменные и базовые стили ---------- */
+
+:root {
+    --orange: #ed9b00;
+    --orange-dark: #d48700;
+    --text: #333333;
+    --muted: #777777;
+    --soft: #9a9a9a;
+    --line: #e8e8e8;
+    --bg: #ffffff;
+
+    --container: 1140px;
+    --radius: 3px;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Open Sans", "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+p {
+    margin: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+[id] {
+    scroll-margin-top: 90px;
+}
+
+/* ---------- 2. Утилиты ---------- */
+
+.container {
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.section__title {
+    margin-bottom: 34px;
+    font-size: 30px;
+    color: var(--text);
+}
+
+/* кнопки */
+.btn {
+    display: inline-block;
+    padding: 11px 22px;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn--orange {
+    background: var(--orange);
+    color: #ffffff;
+}
+
+.btn--orange:hover {
+    background: var(--orange-dark);
+}
+
+.btn--white {
+    background: #ffffff;
+    color: var(--orange);
+}
+
+.btn--white:hover {
+    background: #fff6e0;
+}
+
+.btn--ghost {
+    border-color: #ffffff;
+    color: #ffffff;
+    background: transparent;
+}
+
+.btn--ghost:hover {
+    background: #ffffff;
+    color: var(--text);
+}
+
+.btn--xs {
+    padding: 8px 16px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.btn--block {
+    display: block;
+    width: 100%;
+}
+
+/* ---------- 3. Верхняя полоса ---------- */
+
+.topbar {
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+}
+
+.topbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 44px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.topbar__text {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.topbar__phone {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.topbar__phone:hover {
+    color: var(--orange);
+}
+
+/* ---------- 4. Шапка ---------- */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+}
+
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    min-height: 64px;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+}
+
+.logo__text {
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #111111;
+}
+
+.nav__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px;
+}
+
+.nav a {
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #555555;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav a:hover {
+    color: var(--orange);
+}
+
+/* ---------- 5. Главный экран ---------- */
+
+.hero {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 700px;
+    padding: 150px 0;
+    text-align: center;
+    color: #ffffff;
+    background: #2a2a2a url("../images/hero.jpg") center / cover no-repeat;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.hero__inner {
+    position: relative;
+    max-width: 700px;
+}
+
+.hero__title {
+    margin-bottom: 16px;
+    font-size: 46px;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+}
+
+.hero__lead {
+    margin-bottom: 28px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* ---------- 6. Преимущества (слайдер на CSS) ---------- */
+
+.advantages {
+    padding: 70px 0 60px;
+}
+
+.section__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.slider__radio {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.slider__arrows {
+    display: flex;
+    gap: 4px;
+    padding-top: 6px;
+}
+
+.slider__arrow {
+    font-size: 22px;
+    line-height: 1;
+    color: #c4c4c4;
+    cursor: pointer;
+    padding: 0 6px;
+    transition: color 0.2s ease;
+}
+
+.slider__arrow:hover {
+    color: var(--orange);
+}
+
+.adv__slides {
+    display: grid;
+}
+
+.adv__slide {
+    grid-area: 1 / 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.adv__item {
+    text-align: center;
+}
+
+.adv__icon {
+    width: 88px;
+    height: auto;
+    margin: 0 auto 16px;
+    opacity: 0.85;
+}
+
+.adv__name {
+    font-size: 13px;
+    color: #555555;
+}
+
+/* переключение слайдов */
+#adv-1:checked ~ .adv__slides .adv__slide--1,
+#adv-2:checked ~ .adv__slides .adv__slide--2 {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ---------- 7. О нас ---------- */
+
+.about {
+    padding: 50px 0 65px;
+}
+
+.about p {
+    max-width: 900px;
+    margin-bottom: 14px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* ---------- 8. Подписка ---------- */
+
+.subscribe {
+    padding: 24px 0;
+    background: var(--orange);
+    color: #ffffff;
+}
+
+.subscribe__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.subscribe__text {
+    max-width: 330px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.subscribe__form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.subscribe__input {
+    width: 190px;
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.14);
+    font-family: inherit;
+    font-size: 13px;
+    color: #ffffff;
+    transition: background-color 0.2s ease;
+}
+
+.subscribe__input::placeholder {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.subscribe__input:focus {
+    outline: none;
+    background: #ffffff;
+    color: var(--text);
+}
+
+/* ---------- 9. Особенности гироскутеров ---------- */
+
+.features {
+    padding: 65px 0 70px;
+}
+
+.features__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+}
+
+.features__subtitle {
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.feature-list {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.feature-list li {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 16px;
+}
+
+.feature-list--minus li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: #bdbdbd;
+}
+
+.feature-list--plus li::before {
+    content: "+";
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+}
+
+.feature-list b {
+    color: #4a4a4a;
+    font-weight: 600;
+}
+
+.features__note {
+    max-width: 760px;
+    margin-top: 28px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* ---------- 10. Каталог (фильтр на CSS) ---------- */
+
+.catalog {
+    padding: 65px 0 70px;
+}
+
+.catalog__radio {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.catalog__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 26px;
+}
+
+.catalog__head .section__title {
+    margin-bottom: 0;
+}
+
+.catalog__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.filter {
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #8d8d8d;
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.filter:hover {
+    color: var(--text);
+}
+
+/* активный фильтр */
+#filter-all:checked ~ .catalog__head .filter[for="filter-all"],
+#filter-gyro:checked ~ .catalog__head .filter[for="filter-gyro"],
+#filter-segway:checked ~ .catalog__head .filter[for="filter-segway"],
+#filter-scooter:checked ~ .catalog__head .filter[for="filter-scooter"] {
+    background: var(--orange);
+    color: #ffffff;
+}
+
+/* сам фильтр: прячем товары другого вида */
+#filter-gyro:checked ~ .catalog__grid .product:not(.product--gyro),
+#filter-segway:checked ~ .catalog__grid .product:not(.product--segway),
+#filter-scooter:checked ~ .catalog__grid .product:not(.product--scooter) {
+    display: none;
+}
+
+.catalog__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.product {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #ffffff;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.product:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.product__badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px 8px;
+    border-radius: 2px;
+    background: var(--orange);
+    font-size: 10px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.product__media {
+    display: grid;
+    place-items: center;
+    height: 200px;
+    margin-bottom: 16px;
+    padding: 6px;
+}
+
+.product__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.product__name {
+    flex: 1;
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: #555555;
+}
+
+.product__price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #222222;
+}
+
+/* ---------- 11. Консультанты ---------- */
+
+.consultants {
+    padding: 60px 0 70px;
+}
+
+.consultants__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+}
+
+.consultant {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.consultant__photo {
+    flex: none;
+    width: 84px;
+    height: 84px;
+    object-fit: cover;
+    object-position: 50% 20%;
+}
+
+.consultant__name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #222222;
+}
+
+.consultant__role {
+    margin: 2px 0 10px;
+    font-size: 12px;
+    color: var(--soft);
+}
+
+/* ---------- 12. Бренды ---------- */
+
+.brands {
+    padding: 45px 0;
+}
+
+.brands__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px 34px;
+}
+
+.brand {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #e3e3e3;
+    transition: color 0.2s ease;
+}
+
+.brand:hover {
+    color: #cfcfcf;
+}
+
+/* ---------- 13. Полезная информация ---------- */
+
+.info {
+    padding: 65px 0 80px;
+}
+
+.info__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.info-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+}
+
+.info-card__img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.info-card:hover .info-card__img {
+    transform: scale(1.04);
+}
+
+.info-card__title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 34px 14px 12px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #ffffff;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0));
+}
+
+/* ---------- 14. Подвал ---------- */
+
+.footer {
+    padding: 42px 0 34px;
+    border-top: 1px solid var(--line);
+}
+
+.footer__inner {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 30px;
+}
+
+.footer__about p {
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #a2a2a2;
+}
+
+.footer__copyright {
+    margin-top: 16px;
+    color: #c4c4c4;
+}
+
+.footer__title {
+    margin-bottom: 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #9a9a9a;
+}
+
+.footer__list li {
+    margin-bottom: 8px;
+}
+
+.footer__list a {
+    font-size: 13px;
+    color: #666666;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer__list a:hover {
+    color: var(--orange);
+}
+
+/* ---------- 15. Кнопка «наверх» ---------- */
+
+.to-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 40;
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--orange);
+    color: #ffffff;
+    box-shadow: 0 6px 16px rgba(237, 155, 0, 0.35);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.to-top:hover {
+    background: var(--orange-dark);
+    transform: translateY(-3px);
+}
+
+/* ---------- 16. Модальное окно ---------- */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal:target {
+    display: flex;
+}
+
+.modal__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.modal__box {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 4px;
+    background: #ffffff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    animation: pop 0.25s ease both;
+}
+
+.modal__title {
+    margin-bottom: 6px;
+    font-size: 22px;
+}
+
+.modal__lead {
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.modal__close {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    font-size: 26px;
+    line-height: 1;
+    color: #bdbdbd;
+    text-decoration: none;
+}
+
+.modal__close:hover {
+    color: var(--text);
+}
+
+.field {
+    display: block;
+    margin-bottom: 14px;
+}
+
+.field__label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+    color: #666666;
+}
+
+.field__input {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text);
+    transition: border-color 0.2s ease;
+}
+
+.field__input:focus {
+    outline: none;
+    border-color: var(--orange);
+}
+
+/* ---------- 17. Анимации ---------- */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pop {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.hero__title,
+.hero__lead,
+.hero .btn {
+    animation: fadeUp 0.7s ease both;
+}
+
+.hero__lead {
+    animation-delay: 0.1s;
+}
+
+.hero .btn {
+    animation-delay: 0.18s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* ---------- 18. Адаптивность ---------- */
+
+@media (max-width: 1100px) {
+    .nav__list {
+        gap: 18px;
+    }
+
+    .catalog__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .features__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+}
+
+/* планшет 1024×1366 */
+@media (max-width: 1024px) {
+    .hero {
+        min-height: 440px;
+        padding: 70px 0;
+    }
+
+    .hero__title {
+        font-size: 36px;
+    }
+
+    .info__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .consultants__grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .footer__inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+}
+
+@media (max-width: 860px) {
+    .nav {
+        display: none;
+    }
+
+    .header__inner {
+        min-height: 56px;
+    }
+
+    .catalog__head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .catalog__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .adv__slide {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 26px 16px;
+    }
+
+    .features__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .subscribe__inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .brands__list {
+        justify-content: flex-start;
+        gap: 14px 26px;
+    }
+
+    .brand {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 13px;
+    }
+
+    .topbar__text {
+        font-size: 11px;
+    }
+
+    .hero {
+        min-height: 380px;
+    }
+
+    .hero__title {
+        font-size: 32px;
+    }
+
+    .section__title {
+        font-size: 24px;
+    }
+
+    .catalog__grid,
+    .info__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .subscribe__form {
+        width: 100%;
+    }
+
+    .subscribe__input {
+        width: 100%;
+    }
+
+    .footer__inner {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* пустой подзаголовок нужен только для выравнивания колонок на десктопе */
+@media (max-width: 860px) {
+    .features__subtitle--empty {
+        display: none;
+    }
+}
